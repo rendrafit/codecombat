@@ -185,6 +185,101 @@ describe '/db/prepaid', ->
                       expect(res.statusCode).toBe(200)
                       done()
 
+    it 'return terminal prepaids', (done) ->
+      endDate = new Date()
+      endDate.setUTCMonth(endDate.getUTCMonth() + 2)
+      loginNewUser (user1) ->
+        prepaid = new Prepaid({
+          maxRedeemers: 500,
+          redeemers: [],
+          creator: user1.get('_id')
+          type: 'course'
+          properties:
+            endDate: endDate
+        })
+        prepaid.save (err, prepaid) ->
+          expect(err).toBeNull()
+          url = getURL("/db/prepaid?creator=#{user1.id}")
+          request.get {uri: url}, (err, res, body) ->
+            expect(res.statusCode).toBe(200)
+            documents = JSON.parse(body)
+            expect(documents.length).toEqual(1)
+            return done() unless documents.length is 1
+            expect(documents[0]?.properties?.endDate).toEqual(endDate.toISOString())
+            done()
+
+    it 'do not return expired terminal prepaids', (done) ->
+      endDate = new Date()
+      endDate.setUTCMonth(endDate.getUTCMonth() - 1)
+      loginNewUser (user1) ->
+        prepaid = new Prepaid({
+          maxRedeemers: 500,
+          redeemers: [],
+          creator: user1.get('_id')
+          type: 'course'
+          properties:
+            endDate: endDate
+        })
+        prepaid.save (err, prepaid) ->
+          expect(err).toBeNull()
+          url = getURL("/db/prepaid?creator=#{user1.id}")
+          request.get {uri: url}, (err, res, body) ->
+            expect(res.statusCode).toBe(200)
+            documents = JSON.parse(body)
+            expect(documents.length).toEqual(0)
+            done()
+
+    it 'redeem terminal prepaids', (done) ->
+      endDate = new Date()
+      endDate.setUTCMonth(endDate.getUTCMonth() + 2)
+      loginNewUser (user1) ->
+        prepaid = new Prepaid({
+          maxRedeemers: 500,
+          redeemers: [],
+          creator: user1.get('_id')
+          type: 'course'
+          properties:
+            endDate: endDate
+        })
+        prepaid.save (err, prepaid) ->
+          expect(err).toBeNull()
+          otherUser = new User()
+          otherUser.save (err, otherUser) ->
+            url = getURL("/db/prepaid/#{prepaid.id}/redeemers")
+            redeemer = { userID: otherUser.id }
+            request.post {uri: url, json: redeemer }, (err, res, body) ->
+              expect(body.redeemers?.length).toBe(1)
+              expect(res.statusCode).toBe(200)
+              return done() unless res.statusCode is 200
+              prepaid = Prepaid.findById body._id, (err, prepaid) ->
+                expect(err).toBeNull()
+                expect(prepaid.get('redeemers').length).toBe(1)
+                User.findById  otherUser.id, (err, user) ->
+                  expect(user.get('coursePrepaidID').equals(prepaid.get('_id'))).toBe(true)
+                  done()
+
+    it 'do not redeem expired terminal prepaids', (done) ->
+      endDate = new Date()
+      endDate.setUTCMonth(endDate.getUTCMonth() - 1)
+      loginNewUser (user1) ->
+        prepaid = new Prepaid({
+          maxRedeemers: 500,
+          redeemers: [],
+          creator: user1.get('_id')
+          type: 'course'
+          properties:
+            endDate: endDate
+        })
+        prepaid.save (err, prepaid) ->
+          expect(err).toBeNull()
+          otherUser = new User()
+          otherUser.save (err, otherUser) ->
+            url = getURL("/db/prepaid/#{prepaid.id}/redeemers")
+            redeemer = { userID: otherUser.id }
+            request.post {uri: url, json: redeemer }, (err, res, body) ->
+              expect(res.statusCode).toBe(403)
+              done()
+                      
   it 'Clear database', (done) ->
     clearModels [Course, CourseInstance, Payment, Prepaid, User], (err) ->
       throw err if err
@@ -601,16 +696,16 @@ describe '/db/prepaid', ->
         stripe.tokens.create {
           card: { number: '4242424242424242', exp_month: 12, exp_year: 2020, cvc: '123' }
         }, (err, token) ->
-          loginJoe (joe) ->
+          loginNewUser (user) ->
             purchasePrepaid 'terminal_subscription', months: 1, 3, token.id, (err, res, prepaid) ->
-              request.get "#{getURL('/db/user')}/#{joe.id}/prepaid_codes", (err, res) ->
+              request.get "#{getURL('/db/user')}/#{user.id}/prepaid_codes", (err, res) ->
                 expect(err).toBeNull()
                 expect(res.statusCode).toEqual(200);
                 codes = JSON.parse res.body
-                expect(codes.length).toEqual(2)
+                expect(codes.length).toEqual(1)
                 expect(codes[0].maxRedeemers).toEqual(3)
                 expect(codes[0].properties).toBeDefined()
-                expect(codes[0].properties.months).toEqual(3)
+                expect(codes[0].properties.months).toEqual(1)
                 nockDone()
                 done()
 
