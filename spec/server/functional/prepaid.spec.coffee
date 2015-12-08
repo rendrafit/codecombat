@@ -68,6 +68,7 @@ describe '/db/prepaid', ->
           redeemers: [],
           creator: user1.get('_id')
           code: 1
+          type: 'course'
         })
         prepaid.save (err, prepaid) ->
           otherUser = new User()
@@ -85,6 +86,7 @@ describe '/db/prepaid', ->
           redeemers: [],
           creator: user1.get('_id')
           code: 2
+          type: 'course'
         })
         prepaid.save (err, prepaid) ->
           loginNewUser (user2) ->
@@ -98,7 +100,9 @@ describe '/db/prepaid', ->
             
     it 'is idempotent across prepaids collection', (done) ->
       loginNewUser (user1) ->
-        otherUser = new User()
+        otherUser = new User({
+          'coursePrepaidID': new ObjectId()
+        })
         otherUser.save (err, otherUser) ->
           prepaid1 = new Prepaid({
             redeemers: [{userID: otherUser.get('_id')}],
@@ -122,6 +126,64 @@ describe '/db/prepaid', ->
                   expect(res.statusCode).toBe(200)
                   expect(body.redeemers.length).toBe(0)
                   done()
+
+    it 'is idempotent to itself for a user other than the creator', (done) ->
+      loginNewUser (user1) ->
+        prepaid = new Prepaid({
+          maxRedeemers: 2,
+          redeemers: [],
+          creator: user1.get('_id')
+          code: 0
+          type: 'course'
+        })
+        prepaid.save (err, prepaid) ->
+          otherUser = new User()
+          otherUser.save (err, otherUser) ->
+            url = getURL("/db/prepaid/#{prepaid.id}/redeemers")
+            redeemer = { userID: otherUser.id }
+            request.post {uri: url, json: redeemer }, (err, res, body) ->
+              expect(body.redeemers?.length).toBe(1)
+              expect(res.statusCode).toBe(200)
+              request.post {uri: url, json: redeemer }, (err, res, body) ->
+                expect(body.redeemers?.length).toBe(1)
+                expect(res.statusCode).toBe(200)
+                prepaid = Prepaid.findById body._id, (err, prepaid) ->
+                  expect(err).toBeNull()
+                  expect(prepaid.get('redeemers').length).toBe(1)
+                  User.findById  otherUser.id, (err, user) ->
+                    expect(user.get('coursePrepaidID').equals(prepaid.get('_id'))).toBe(true)
+                    done()
+
+    it 'is idempotent to itself for the creator', (done) ->
+      loginNewUser (user1) ->
+        prepaid = new Prepaid({
+          maxRedeemers: 2,
+          redeemers: [],
+          creator: user1.get('_id')
+          code: 0
+          type: 'course'
+        })
+        prepaid.save (err, prepaid) ->
+          otherUser = new User()
+          otherUser.save (err, otherUser) ->
+            url = getURL("/db/prepaid/#{prepaid.id}/redeemers")
+            redeemer = { userID: user1.id }
+            request.post {uri: url, json: redeemer }, (err, res, body) ->
+              expect(body.redeemers?.length).toBe(1)
+              expect(res.statusCode).toBe(200)
+              request.post {uri: url, json: redeemer }, (err, res, body) ->
+                expect(body.redeemers?.length).toBe(1)
+                expect(res.statusCode).toBe(200)
+                prepaid = Prepaid.findById body._id, (err, prepaid) ->
+                  expect(err).toBeNull()
+                  expect(prepaid.get('redeemers').length).toBe(1)
+                  User.findById  user1.id, (err, user) ->
+                    expect(user.get('coursePrepaidID').equals(prepaid.get('_id'))).toBe(true)
+                    redeemer = { userID: otherUser.id }
+                    request.post {uri: url, json: redeemer }, (err, res, body) ->
+                      expect(body.redeemers?.length).toBe(2)
+                      expect(res.statusCode).toBe(200)
+                      done()
 
   it 'Clear database', (done) ->
     clearModels [Course, CourseInstance, Payment, Prepaid, User], (err) ->
