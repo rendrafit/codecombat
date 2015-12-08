@@ -316,6 +316,7 @@ _.extend UserSchema.properties,
   country: { type: 'string', enum: ['brazil', 'china'] }  # New, supports multiple countries for different versions--only set for specific countries where we have premium servers right now
 
   clans: c.array {}, c.objectId()
+  courseInstances: c.array {}, c.objectId()
   currentCourse: c.object {}, {  # Old, can be removed after we deploy and delete it from all users
     courseID: c.objectId({})
     courseInstanceID: c.objectId({})
@@ -323,6 +324,7 @@ _.extend UserSchema.properties,
   coursePrepaidID: c.objectId({
     description: 'Prepaid which has paid for this user\'s course access'
   })
+  schoolName: {type: 'string'}
 
 c.extendBasicProperties UserSchema, 'user'
 

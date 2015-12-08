@@ -199,7 +199,7 @@ UserHandler = class UserHandler extends Handler
   getSimulatorLeaderboard: (req, res) ->
     queryParameters = @getSimulatorLeaderboardQueryParameters(req)
     leaderboardQuery = User.find(queryParameters.query).select('name simulatedBy simulatedFor').sort({'simulatedBy': queryParameters.sortOrder}).limit(queryParameters.limit)
-    leaderboardQuery.cache() if req.query.scoreOffset is -1
+    leaderboardQuery.cache(10 * 60 * 1000) if req.query.scoreOffset is -1
     leaderboardQuery.exec (err, otherUsers) ->
       otherUsers = _.reject otherUsers, _id: req.user._id if req.query.scoreOffset isnt -1 and req.user
       otherUsers ?= []
@@ -459,6 +459,7 @@ UserHandler = class UserHandler extends Handler
     sendMail emailParams
 
   getPrepaidCodes: (req, res) ->
+    return @sendSuccess(res, []) unless req.user?
     orQuery = [{ creator: req.user._id }, { 'redeemers.userID' :  req.user._id }]
     Prepaid.find({}).or(orQuery).exec (err, documents) =>
       @sendSuccess(res, documents)
@@ -704,15 +705,17 @@ UserHandler = class UserHandler extends Handler
     return @sendMethodNotAllowed res unless req.method is 'POST'
     return @sendForbiddenError res unless userID and userID is req.user?._id + ''  # Only you can reset your own progress
     return @sendForbiddenError res if req.user?.isAdmin()  # Protect admins from resetting their progress
-    async.parallel [
-      (cb) -> LevelSession.remove {creator: req.user._id + ''}, cb
-      (cb) -> EarnedAchievement.remove {user: req.user._id + ''}, cb
-      (cb) -> UserPollsRecord.remove {user: req.user._id + ''}, cb
-      (cb) -> req.user.update {points: 0, 'stats.gamesCompleted': 0, 'stats.concepts': {}, 'earned.gems': 0, 'earned.levels': [], 'earned.items': [], 'earned.heroes': [], 'purchased.items': [], 'purchased.heroes': [], spent: 0}, cb
-    ], (err, results) =>
+    @constructor.resetProgressForUser req.user, (err, results) =>
       return @sendDatabaseError res, err if err
       @sendSuccess res, result: 'success'
 
+  @resetProgressForUser: (user, cb) ->
+    async.parallel [
+      (cb) -> LevelSession.remove {creator: user._id + ''}, cb
+      (cb) -> EarnedAchievement.remove {user: user._id + ''}, cb
+      (cb) -> UserPollsRecord.remove {user: user._id + ''}, cb
+      (cb) -> user.update {points: 0, 'stats.gamesCompleted': 0, 'stats.concepts': {}, 'earned.gems': 0, 'earned.levels': [], 'earned.items': [], 'earned.heroes': [], 'purchased.items': [], 'purchased.heroes': [], spent: 0}, cb
+    ], cb
 
   countEdits = (model, done) ->
     statKey = User.statsMapping.edits[model.modelName]

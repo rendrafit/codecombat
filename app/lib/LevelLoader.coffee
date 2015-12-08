@@ -10,6 +10,7 @@ CocoClass = require 'core/CocoClass'
 AudioPlayer = require 'lib/AudioPlayer'
 app = require 'core/application'
 World = require 'lib/world/world'
+utils = require 'core/utils'
 
 # This is an initial stab at unifying loading and setup into a single place which can
 # monitor everything and keep a LoadingScreen visible overall progress.
@@ -105,6 +106,8 @@ module.exports = class LevelLoader extends CocoClass
   loadDependenciesForSession: (session) ->
     if me.id isnt session.get 'creator'
       session.patch = session.save = -> console.error "Not saving session, since we didn't create it."
+    else if codeLanguage = utils.getQueryVariable 'codeLanguage'
+      session.set 'codeLanguage', codeLanguage
     @loadCodeLanguagesForSession session
     if session is @session
       @addSessionBrowserInfo session
@@ -415,20 +418,23 @@ module.exports = class LevelLoader extends CocoClass
   # Initial Sound Loading
 
   playJingle: ->
-    return if @headless
+    return if @headless or not me.get('volume')
+    volume = 0.5
+    if me.level() < 3
+      volume = 0.25  # Start softly, since they may not be expecting it
     # Apparently the jingle, when it tries to play immediately during all this loading, you can't hear it.
     # Add the timeout to fix this weird behavior.
     f = ->
       jingles = ['ident_1', 'ident_2']
-      AudioPlayer.playInterfaceSound jingles[Math.floor Math.random() * jingles.length]
+      AudioPlayer.playInterfaceSound jingles[Math.floor Math.random() * jingles.length], volume
     setTimeout f, 500
 
   loadAudio: ->
-    return if @headless
+    return if @headless or not me.get('volume')
     AudioPlayer.preloadInterfaceSounds ['victory']
 
   loadLevelSounds: ->
-    return if @headless
+    return if @headless or not me.get('volume')
     scripts = @level.get 'scripts'
     return unless scripts
 

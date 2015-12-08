@@ -62,16 +62,17 @@
     "express-useragent": "~0.0.9",
     "geoip-lite": "^1.1.6",
     "graceful-fs": "~2.0.1",
-    "gridfs-stream": "0.4.x",
+    "gridfs-stream": "~1.1.1",
     "jsondiffpatch": "0.1.17",
     "lodash": "~2.4.1",
     "mailchimp-api": "2.0.x",
     "moment": "~2.5.0",
     "mongodb": "^2.0.28",
-    "mongoose": "3.8.x",
-    "mongoose-cache": "~0.1.4",
+    "mongoose": "^4.2.9",
+    "mongoose-cache": "https://github.com/nwinter/mongoose-cache/tarball/master",
     "node-force-domain": "~0.1.0",
     "node-gyp": "~0.13.0",
+    "node-statsd": "^0.1.1",
     "passport": "0.1.x",
     "passport-local": "0.1.x",
     "redis": "",
@@ -120,12 +121,13 @@
     "uglify-js": "^2.5.0"
   },
   "optionalDependencies": {
+    "newrelic": "^1.24.0",
     "webworker-threads": "~0.5.5"
   },
   "license": "MIT for the code, and CC-BY for the art and music",
   "private": true,
   "engines": {
-    "node": "0.10.x",
+    "node": "^5.1.1",
     "npm": "^3.0.0"
   }
 }

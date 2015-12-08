@@ -169,6 +169,11 @@ _.extend LevelSessionSchema.properties,
   chat:
     type: 'array'
 
+  ladderAchievementDifficulty:
+    type: 'integer'
+    minimum: 0
+    description: 'What ogre AI difficulty, 0-4, this human session has beaten in a multiplayer arena.'
+
   meanStrength:
     type: 'number'
 
@@ -299,6 +304,7 @@ _.extend LevelSessionSchema.properties,
       c.object {},
         leagueID: {type: 'string', description: 'The _id of a Clan or CourseInstance the user belongs to.'}
         stats: c.object {description: 'Multiplayer match statistics corresponding to this entry in the league.'}
+        lastOpponentSubmitDate: c.date {description: 'The submitDate of the last league session we selected to play against (for playing through league opponents in order).'}
 
 LevelSessionSchema.properties.leagues.items.properties.stats.properties = _.pick LevelSessionSchema.properties, 'meanStrength', 'standardDeviation', 'totalScore', 'numberOfWinsAndTies', 'numberOfLosses', 'scoreHistory', 'matches'
 

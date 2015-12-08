@@ -42,6 +42,7 @@ module.exports = class AuthModal extends ModalView
   afterRender: ->
     super()
     @$el.toggleClass('signup', @mode is 'signup').toggleClass('login', @mode is 'login')
+    @playSound 'game-menu-open'
 
   afterInsert: ->
     super()
@@ -78,7 +79,7 @@ module.exports = class AuthModal extends ModalView
 
   emailCheck: ->
     email = $('#email', @$el).val()
-    filter = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i  # https://news.ycombinator.com/item?id=5763990
+    filter = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,63}$/i  # https://news.ycombinator.com/item?id=5763990
     unless filter.test(email)
       forms.setErrorToProperty @$el, 'email', 'Please enter a valid email address', true
       return false
@@ -90,8 +91,9 @@ module.exports = class AuthModal extends ModalView
     userObject = forms.formToObject @$el
     delete userObject.subscribe
     delete userObject.name if userObject.name is ''
+    delete userObject.schoolName if userObject.schoolName is ''
     userObject.name = @suggestedName if @suggestedName
-    for key, val of me.attributes when key in ['preferredLanguage', 'testGroupNumber', 'dateCreated', 'wizardColor1', 'name', 'music', 'volume', 'emails']
+    for key, val of me.attributes when key in ['preferredLanguage', 'testGroupNumber', 'dateCreated', 'wizardColor1', 'name', 'music', 'volume', 'emails', 'schoolName']
       userObject[key] ?= val
     subscribe = @$el.find('#subscribe').prop('checked')
     userObject.emails ?= {}
@@ -155,3 +157,7 @@ module.exports = class AuthModal extends ModalView
     el.i18n()
     @$el.find('.modal-body:visible').empty().append(el)
     @$el.find('.modal-footer').remove()
+
+  onHidden: ->
+    super()
+    @playSound 'game-menu-close'
