@@ -10,7 +10,7 @@ module.exports = nativeDescription: "Bahasa Indonesia", englishDescription: "Ind
     campaign: "Campaign"
     for_beginners: "Pemula"
     multiplayer: "Multiplayer" # Not currently shown on home page
-    for_developers: "Developers" # Not currently shown on home page.
+    for_developers: "Pengembang" # Not currently shown on home page.
     or_ipad: "atau download untuk iPad"
 #    hoc_class_code: "I Have a Class Code"
 #    hoc_enter: "Enter"
@@ -53,34 +53,34 @@ module.exports = nativeDescription: "Bahasa Indonesia", englishDescription: "Ind
 #    subscribe_as_diplomat: "Subscribe as a Diplomat"
 
   play:
-#    play_as: "Play As" # Ladder page
+#    play_as: "Bermain sebagai" # Ladder page
 #    compete: "Compete!" # Course details page
 #    spectate: "Spectate" # Ladder page
-#    players: "players" # Hover over a level on /play
+#    players: "pemain" # Hover over a level on /play
 #    hours_played: "hours played" # Hover over a level on /play
-#    items: "Items" # Tooltip on item shop button from /play
-#    unlock: "Unlock" # For purchasing items and heroes
+#    items: "Barang" # Tooltip on item shop button from /play
+#    unlock: "Buka" # For purchasing items and heroes
     confirm: "Konfirmasi"
-#    owned: "Owned" # For items you own
+#    owned: "Sudah dimiliki" # For items you own
     locked: "Terkunci"
 #    purchasable: "Purchasable" # For a hero you unlocked but haven't purchased
     available: "Tersedia"
 #    skills_granted: "Skills Granted" # Property documentation details
     heroes: "Heroes" # Tooltip on hero shop button from /play
-#    achievements: "Achievements" # Tooltip on achievement list button from /play
+#    achievements: "Penghargaan" # Tooltip on achievement list button from /play
     account: "Akun" # Tooltip on account button from /play
     settings: "Pengaturan" # Tooltip on settings button from /play
 #    poll: "Poll" # Tooltip on poll button from /play
-#    next: "Next" # Go from choose hero to choose inventory before playing a level
-#    change_hero: "Change Hero" # Go back from choose inventory to choose hero
-#    choose_inventory: "Equip Items"
-#    buy_gems: "Buy Gems"
-#    subscription_required: "Subscription Required"
+#    next: "Berikutnya" # Go from choose hero to choose inventory before playing a level
+#    change_hero: "Ganti Hero" # Go back from choose inventory to choose hero
+#    choose_inventory: "Pakai"
+#    buy_gems: "Beli Gems"
+#    subscription_required: "Langganan Dibutuhkan"
 #    anonymous: "Anonymous Player"
-#    level_difficulty: "Difficulty: "
+#    level_difficulty: "tingkat kesulitan: "
 #    campaign_beginner: "Beginner Campaign"
     awaiting_levels_adventurer_prefix: "Kami meliris lima level per minggu" # {change}
-#    awaiting_levels_adventurer: "Sign up as an Adventurer"
+#    awaiting_levels_adventurer: "Daftar sebagai Adventurer"
 #    awaiting_levels_adventurer_suffix: "to be the first to play new levels."
 #    adjust_volume: "Adjust volume"
     campaign_multiplayer: "Arena Multiplayer"
@@ -89,11 +89,11 @@ module.exports = nativeDescription: "Bahasa Indonesia", englishDescription: "Ind
 #    campaign_old_multiplayer_description: "Relics of a more civilized age. No simulations are run for these older, hero-less multiplayer arenas."
 
 #  share_progress_modal:
-#    blurb: "You’re making great progress! Tell your parent how much you've learned with CodeCombat."
-#    email_invalid: "Email address invalid."
-#    form_blurb: "Enter your parent's email below and we’ll show them!"
-#    form_label: "Email Address"
-#    placeholder: "email address"
+#    blurb: "Kamu membuat kemajuan yang bagus! Bilang orang tuamu berapa banyak yang kau pelajari di CodeCombat."
+#    email_invalid: "alamat email tidak valid."
+#    form_blurb: "Masukkan alamat email orangtuamu dan akan kami tunjukkan ke mereka!"
+#    form_label: "Alamat Email"
+#    placeholder: "alamat email"
 #    title: "Excellent Work, Apprentice"
 
   login:
@@ -101,22 +101,22 @@ module.exports = nativeDescription: "Bahasa Indonesia", englishDescription: "Ind
     log_in: "Masuk"
     logging_in: "Logging In"
     log_out: "Keluar"
-#    forgot_password: "Forgot your password?"
+#    forgot_password: "lupa kata sandimu?"
 #    authenticate_gplus: "Authenticate G+"
 #    load_profile: "Load G+ Profile"
-#    finishing: "Finishing"
-#    sign_in_with_facebook: "Sign in with Facebook"
-#    sign_in_with_gplus: "Sign in with G+"
-#    signup_switch: "Want to create an account?"
+#    finishing: "Penyelesaian"
+#    sign_in_with_facebook: "masuk menggunakan Facebook"
+#    sign_in_with_gplus: "Masuk menggunakan G+"
+#    signup_switch: "Ingin membuat akun?"
 
 #  signup:
-#    email_announcements: "Receive announcements by email"
-#    creating: "Creating Account..."
-#    sign_up: "Sign Up"
-#    log_in: "log in with password"
-#    social_signup: "Or, you can sign up through Facebook or G+:"
+#    email_announcements: "Terima pemberitahuan lewat email"
+#    creating: "Membuat Akun..."
+#    sign_up: "Daftar"
+#    log_in: "masuk menggunakan kata sandi"
+#    social_signup: "Atau, kamu bisa mendaftar melalui Facebook atau G+:"
 #    required: "You need to log in before you can go that way."
-#    login_switch: "Already have an account?"
+#    login_switch: "Sudah memiliki akun?"
 
 #  recover:
 #    recover_account_title: "Recover Account"
@@ -127,45 +127,45 @@ module.exports = nativeDescription: "Bahasa Indonesia", englishDescription: "Ind
 #    primary: "Primary"
 #    secondary: "Secondary"
 #    armor: "Armor"
-#    accessories: "Accessories"
+#    accessories: "Aksesoris"
 #    misc: "Misc"
-#    books: "Books"
+#    books: "Buku"
 
   common:
 #    back: "Back" # When used as an action verb, like "Navigate backward"
 #    continue: "Continue" # When used as an action verb, like "Continue forward"
     loading: "Loading..."
-#    saving: "Saving..."
-#    sending: "Sending..."
-#    send: "Send"
-#    cancel: "Cancel"
-#    save: "Save"
+#    saving: "Menyimpan..."
+#    sending: "Mengirim..."
+#    send: "Kirim"
+#    cancel: "Batal"
+#    save: "Simpan"
 #    publish: "Publish"
-#    create: "Create"
+#    create: "buat"
 #    fork: "Fork"
-#    play: "Play" # When used as an action verb, like "Play next level"
-#    retry: "Retry"
-#    actions: "Actions"
+#    play: "Main" # When used as an action verb, like "Play next level"
+#    retry: "Coba lagi"
+#    actions: "Aksi"
 #    info: "Info"
-#    help: "Help"
+#    help: "Bantuan"
 #    watch: "Watch"
 #    unwatch: "Unwatch"
 #    submit_patch: "Submit Patch"
 #    submit_changes: "Submit Changes"
-#    save_changes: "Save Changes"
+#    save_changes: "Simpan Perubahan"
 
 #  general:
-#    and: "and"
-#    name: "Name"
-#    date: "Date"
+#    and: "dan"
+#    name: "Nama"
+#    date: "Tanggal"
 #    body: "Body"
-#    version: "Version"
-#    pending: "Pending"
-#    accepted: "Accepted"
-#    rejected: "Rejected"
+#    version: "Versi"
+#    pending: "Tertunda"
+#    accepted: "Diterima"
+#    rejected: "Ditolak"
 #    withdrawn: "Withdrawn"
-#    accept: "Accept"
-#    reject: "Reject"
+#    accept: "Terima"
+#    reject: "Tolak"
 #    withdraw: "Withdraw"
 #    submitter: "Submitter"
 #    submitted: "Submitted"
@@ -181,44 +181,44 @@ module.exports = nativeDescription: "Bahasa Indonesia", englishDescription: "Ind
 #    result: "Result"
 #    results: "Results"
 #    description: "Description"
-#    or: "or"
+#    or: "atau"
 #    subject: "Subject"
 #    email: "Email"
-#    password: "Password"
-#    message: "Message"
+#    password: "Kata sandi"
+#    message: "Pesan"
 #    code: "Code"
 #    ladder: "Ladder"
-#    when: "When"
-#    opponent: "Opponent"
+#    when: "Saat"
+#    opponent: "Musuh"
 #    rank: "Rank"
-#    score: "Score"
-#    win: "Win"
-#    loss: "Loss"
+#    score: "Nilai"
+#    win: "Menang"
+#    loss: "Kalah"
 #    tie: "Tie"
 #    easy: "Easy"
 #    medium: "Medium"
 #    hard: "Hard"
-#    player: "Player"
+#    player: "Pemain"
 #    player_level: "Level" # Like player level 5, not like level: Dungeons of Kithgard
 #    warrior: "Warrior"
 #    ranger: "Ranger"
-#    wizard: "Wizard"
+#    wizard: "Penyihir"
 
 #  units:
-#    second: "second"
-#    seconds: "seconds"
-#    minute: "minute"
-#    minutes: "minutes"
-#    hour: "hour"
-#    hours: "hours"
-#    day: "day"
-#    days: "days"
-#    week: "week"
-#    weeks: "weeks"
-#    month: "month"
-#    months: "months"
-#    year: "year"
-#    years: "years"
+#    second: "detik"
+#    seconds: "detik"
+#    minute: "menit"
+#    minutes: "menit"
+#    hour: "jam"
+#    hours: "jam"
+#    day: "hari"
+#    days: "hari"
+#    week: "pekan"
+#    weeks: "pekan"
+#    month: "bulan"
+#    months: "bulan"
+#    year: "tahun"
+#    years: "tahun"
 
 #  play_level:
 #    completed_level: "Completed Level:"
@@ -229,14 +229,14 @@ module.exports = nativeDescription: "Bahasa Indonesia", englishDescription: "Ind
 #    show_menu: "Show game menu"
 #    home: "Home" # Not used any more, will be removed soon.
 #    level: "Level" # Like "Level: Dungeons of Kithgard"
-#    skip: "Skip"
+#    skip: "Lewati"
 #    game_menu: "Game Menu"
 #    guide: "Guide"
 #    restart: "Restart"
 #    goals: "Goals"
 #    goal: "Goal"
 #    running: "Running..."
-#    success: "Success!"
+#    success: "Sukses!"
 #    incomplete: "Incomplete"
 #    timed_out: "Ran out of time"
 #    failing: "Failing"
