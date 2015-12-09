@@ -118,7 +118,7 @@ describe '/db/user, editing stripe.couponID property', ->
         expect(res.statusCode).toBe(200)
         expect(body.stripe.couponID).toBeUndefined()
         stripe.customers.retrieve joeData.stripe.customerID, (err, customer) ->
-          expect(customer.discount).toBe(null)
+          expect(customer.discount).toBeFalsy()
           nockDone()
           done()
 
