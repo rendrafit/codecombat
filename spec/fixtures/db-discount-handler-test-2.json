@@ -3,38 +3,9 @@
         "scope": "https://api.stripe.com:443",
         "method": "GET",
         "path": "/v1/coupons/20pct",
-        "body": "",
         "status": 200,
         "response": {
-            "id": "20pct",
-            "object": "coupon",
-            "amount_off": null,
-            "created": 1417733724,
-            "currency": null,
-            "duration": "forever",
-            "duration_in_months": null,
-            "livemode": false,
-            "max_redemptions": null,
-            "metadata": {},
-            "percent_off": 20,
-            "redeem_by": null,
-            "times_redeemed": 7958,
-            "valid": true
-        },
-        "headers": {
-            "server": "nginx",
-            "date": "Mon, 16 Nov 2015 19:14:47 GMT",
-            "content-type": "application/json",
-            "content-length": "315",
-            "connection": "close",
-            "access-control-allow-credentials": "true",
-            "access-control-allow-methods": "GET, POST, HEAD, OPTIONS, DELETE",
-            "access-control-allow-origin": "*",
-            "access-control-max-age": "300",
-            "cache-control": "no-cache, no-store",
-            "request-id": "req_7MbejKhpq4159v",
-            "stripe-version": "2015-02-18",
-            "strict-transport-security": "max-age=31556926; includeSubDomains"
+            "id": "20pct"
         }
     }
 ]

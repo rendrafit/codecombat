@@ -3,38 +3,9 @@
         "scope": "https://api.stripe.com:443",
         "method": "GET",
         "path": "/v1/coupons/500off",
-        "body": "",
         "status": 200,
         "response": {
-            "id": "500off",
-            "object": "coupon",
-            "amount_off": 500,
-            "created": 1417733764,
-            "currency": "usd",
-            "duration": "forever",
-            "duration_in_months": null,
-            "livemode": false,
-            "max_redemptions": null,
-            "metadata": {},
-            "percent_off": null,
-            "redeem_by": null,
-            "times_redeemed": 4107,
-            "valid": true
-        },
-        "headers": {
-            "server": "nginx",
-            "date": "Mon, 16 Nov 2015 19:14:48 GMT",
-            "content-type": "application/json",
-            "content-length": "318",
-            "connection": "close",
-            "access-control-allow-credentials": "true",
-            "access-control-allow-methods": "GET, POST, HEAD, OPTIONS, DELETE",
-            "access-control-allow-origin": "*",
-            "access-control-max-age": "300",
-            "cache-control": "no-cache, no-store",
-            "request-id": "req_7MbeNIFlnNeLBA",
-            "stripe-version": "2015-02-18",
-            "strict-transport-security": "max-age=31556926; includeSubDomains"
+            "id": "500off"
         }
     }
 ]

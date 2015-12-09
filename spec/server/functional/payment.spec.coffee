@@ -104,7 +104,7 @@ describe '/db/payment', ->
         done()
 
     it 'handles a purchase', (done) ->
-      nockUtils.setupNock 'db-payment-stripe-test-01.json', (err, nockDone) ->
+      nockUtils.setupNock 'db-payment-stripe-test-01.json', { keep: {productID: true} }, (err, nockDone) ->
         stripe.tokens.create({
           card: { number: '4242424242424242', exp_month: 12, exp_year: 2020, cvc: '123' }
         }, (err, token) ->
@@ -342,7 +342,7 @@ describe '/db/payment', ->
         done()
 
     it 'handles a custom purchase with description', (done) ->
-      nockUtils.setupNock 'db-payment-custom-stripe-test-01.json', (err, nockDone) ->
+      nockUtils.setupNock 'db-payment-custom-stripe-test-01.json', { keep: { 'description': true, 'productID': true }}, (err, nockDone) ->
         timestamp = 1447445242091
         amount = 5000
         description = 'A sweet Coco t-shirt'
@@ -391,7 +391,7 @@ describe '/db/payment', ->
         )
 
     it 'handles a custom purchase without description', (done) ->
-      nockUtils.setupNock 'db-payment-custom-stripe-test-02.json', (err, nockDone) ->
+      nockUtils.setupNock 'db-payment-custom-stripe-test-02.json', { keep: { 'productID': true }}, (err, nockDone) ->
         timestamp = 1447445242092
         amount = 73000
   

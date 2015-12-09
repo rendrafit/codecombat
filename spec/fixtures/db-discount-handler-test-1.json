@@ -3,28 +3,11 @@
         "scope": "https://api.stripe.com:443",
         "method": "GET",
         "path": "/v1/coupons/DNE",
-        "body": "",
         "status": 404,
         "response": {
             "error": {
-                "type": "invalid_request_error",
-                "message": "No such coupon: DNE",
-                "param": "id"
+                "type": "invalid_request_error"
             }
-        },
-        "headers": {
-            "server": "nginx",
-            "date": "Mon, 16 Nov 2015 19:14:47 GMT",
-            "content-type": "application/json",
-            "content-length": "114",
-            "connection": "close",
-            "access-control-allow-credentials": "true",
-            "access-control-allow-methods": "GET, POST, HEAD, OPTIONS, DELETE",
-            "access-control-allow-origin": "*",
-            "access-control-max-age": "300",
-            "cache-control": "no-cache, no-store",
-            "request-id": "req_7MbexgE5ZZLLRW",
-            "stripe-version": "2015-02-18"
         }
     }
 ]

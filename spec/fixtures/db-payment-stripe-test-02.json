@@ -2,122 +2,36 @@
     {
         "scope": "https://api.stripe.com:443",
         "method": "POST",
-        "path": "/v1/customers/cus_7Ma38opugqZwnR",
-        "body": "card=tok_177qt9KaReE7xLUd2KmwZB5t",
+        "path": "/v1/customers/cus_7Uw4qnUbAltm7t",
         "status": 400,
         "response": {
             "error": {
-                "type": "invalid_request_error",
-                "message": "You cannot use a Stripe token more than once: tok_177qt9KaReE7xLUd2KmwZB5t."
+                "type": "invalid_request_error"
             }
-        },
-        "headers": {
-            "server": "nginx",
-            "date": "Mon, 16 Nov 2015 17:35:39 GMT",
-            "content-type": "application/json",
-            "content-length": "151",
-            "connection": "close",
-            "access-control-allow-credentials": "true",
-            "access-control-allow-methods": "GET, POST, HEAD, OPTIONS, DELETE",
-            "access-control-allow-origin": "*",
-            "access-control-max-age": "300",
-            "cache-control": "no-cache, no-store",
-            "request-id": "req_7Ma3sw8eckxfN5",
-            "stripe-version": "2015-02-18"
         }
     },
     {
         "scope": "https://api.stripe.com:443",
         "method": "GET",
         "path": "/v1/charges",
-        "body": "customer=cus_7Ma38opugqZwnR",
         "status": 200,
         "response": {
-            "object": "list",
             "data": [
                 {
-                    "id": "ch_177qtCKaReE7xLUdC4ILCg0X",
-                    "object": "charge",
+                    "id": "ch_17FwCHKaReE7xLUd9bKonuCX",
                     "amount": 499,
-                    "amount_refunded": 0,
-                    "application_fee": null,
-                    "balance_transaction": "txn_177qtCKaReE7xLUdw8aNQ2zB",
-                    "captured": true,
-                    "created": 1447695338,
-                    "currency": "usd",
-                    "customer": "cus_7Ma38opugqZwnR",
-                    "description": null,
-                    "destination": null,
-                    "dispute": null,
-                    "failure_code": null,
-                    "failure_message": null,
-                    "fraud_details": {},
-                    "invoice": null,
-                    "livemode": false,
+                    "customer": "cus_7Uw4qnUbAltm7t",
                     "metadata": {
-                        "productID": "gems_5",
-                        "userID": "564a13e78c1efb965dd49793",
                         "gems": "5000",
                         "timestamp": "1447443579286"
                     },
                     "paid": true,
-                    "receipt_email": "normal@jo.com",
-                    "receipt_number": null,
-                    "refunded": false,
-                    "refunds": {
-                        "object": "list",
-                        "data": [],
-                        "has_more": false,
-                        "total_count": 0,
-                        "url": "/v1/charges/ch_177qtCKaReE7xLUdC4ILCg0X/refunds"
-                    },
-                    "shipping": null,
                     "source": {
-                        "id": "card_177qt9KaReE7xLUdd4vSr3mF",
-                        "object": "card",
-                        "address_city": null,
-                        "address_country": null,
-                        "address_line1": null,
-                        "address_line1_check": null,
-                        "address_line2": null,
-                        "address_state": null,
-                        "address_zip": null,
-                        "address_zip_check": null,
-                        "brand": "Visa",
-                        "country": "US",
-                        "customer": "cus_7Ma38opugqZwnR",
-                        "cvc_check": "pass",
-                        "dynamic_last4": null,
-                        "exp_month": 12,
-                        "exp_year": 2020,
-                        "fingerprint": "lURQLEXF5AOMW942",
-                        "funding": "credit",
-                        "last4": "4242",
-                        "metadata": {},
-                        "name": null,
-                        "tokenization_method": null
-                    },
-                    "statement_descriptor": "CODECOMBAT.COM",
-                    "status": "succeeded"
+                        "id": "card_17FwCEKaReE7xLUdienoEY88",
+                        "customer": "cus_7Uw4qnUbAltm7t"
+                    }
                 }
-            ],
-            "has_more": false,
-            "url": "/v1/charges"
-        },
-        "headers": {
-            "server": "nginx",
-            "date": "Mon, 16 Nov 2015 17:35:40 GMT",
-            "content-type": "application/json",
-            "content-length": "1949",
-            "connection": "close",
-            "access-control-allow-credentials": "true",
-            "access-control-allow-methods": "GET, POST, HEAD, OPTIONS, DELETE",
-            "access-control-allow-origin": "*",
-            "access-control-max-age": "300",
-            "cache-control": "no-cache, no-store",
-            "request-id": "req_7Ma3LB2UlDXCXY",
-            "stripe-version": "2015-02-18",
-            "strict-transport-security": "max-age=31556926; includeSubDomains"
+            ]
         }
     }
 ]

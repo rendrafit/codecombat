@@ -85,7 +85,7 @@ customerSubscriptionDeletedSampleEvent = {
 }
 
 
-describe '/db/user, editing stripe property', ->
+xdescribe '/db/user, editing stripe property', ->
   afterEach nockUtils.teardownNock
 
   stripe = require('stripe')(config.stripe.secretKey)
@@ -238,7 +238,7 @@ describe '/db/user, editing stripe property', ->
         setTimeout(f, 500) # bit of a race condition here, response returns before stripe has been updated
 
 
-describe 'Subscriptions', ->
+xdescribe 'Subscriptions', ->
   # TODO: Test recurring billing via webhooks
   # TODO: Test error rollbacks, Stripe is authority
 

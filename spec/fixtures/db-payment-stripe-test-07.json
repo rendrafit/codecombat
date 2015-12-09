@@ -3,209 +3,59 @@
         "scope": "https://api.stripe.com:443",
         "method": "POST",
         "path": "/v1/tokens",
-        "body": "card%5Bnumber%5D=4000000000000002&card%5Bexp_month%5D=12&card%5Bexp_year%5D=2020&card%5Bcvc%5D=123",
         "status": 200,
         "response": {
-            "id": "tok_177r63KaReE7xLUdQiRFg3gO",
-            "object": "token",
+            "id": "tok_17FwCYKaReE7xLUd24UoozB7",
             "card": {
-                "id": "card_177r63KaReE7xLUdD0s7aId7",
-                "object": "card",
-                "address_city": null,
-                "address_country": null,
-                "address_line1": null,
-                "address_line1_check": null,
-                "address_line2": null,
-                "address_state": null,
-                "address_zip": null,
-                "address_zip_check": null,
-                "brand": "Visa",
-                "country": "US",
-                "cvc_check": "unchecked",
-                "dynamic_last4": null,
-                "exp_month": 12,
-                "exp_year": 2020,
-                "fingerprint": "RtqnjGk4fjcJtdeu",
-                "funding": "credit",
-                "last4": "0002",
-                "metadata": {},
-                "name": null,
-                "tokenization_method": null
+                "id": "card_17FwCYKaReE7xLUdm98J7AhE"
             },
-            "client_ip": "184.23.19.118",
-            "created": 1447696135,
-            "livemode": false,
-            "type": "card",
-            "used": false
-        },
-        "headers": {
-            "server": "nginx",
-            "date": "Mon, 16 Nov 2015 17:48:55 GMT",
-            "content-type": "application/json",
-            "content-length": "781",
-            "connection": "close",
-            "access-control-allow-credentials": "true",
-            "access-control-allow-methods": "GET, POST, HEAD, OPTIONS, DELETE",
-            "access-control-allow-origin": "*",
-            "access-control-max-age": "300",
-            "cache-control": "no-cache, no-store",
-            "request-id": "req_7MaGrxYzUisw2r",
-            "stripe-version": "2015-02-18",
-            "strict-transport-security": "max-age=31556926; includeSubDomains"
+            "type": "card"
         }
     },
     {
         "scope": "https://api.stripe.com:443",
         "method": "POST",
-        "path": "/v1/customers/cus_7MaG1FCDTo5FQN",
-        "body": "card=tok_177r63KaReE7xLUdQiRFg3gO",
+        "path": "/v1/customers/cus_7Uw4xPukaQLLcQ",
         "status": 402,
         "response": {
             "error": {
-                "message": "Your card was declined.",
-                "type": "card_error",
-                "param": "",
-                "code": "card_declined",
-                "decline_code": "generic_decline"
+                "type": "card_error"
             }
-        },
-        "headers": {
-            "server": "nginx",
-            "date": "Mon, 16 Nov 2015 17:48:55 GMT",
-            "content-type": "application/json",
-            "content-length": "173",
-            "connection": "close",
-            "access-control-allow-credentials": "true",
-            "access-control-allow-methods": "GET, POST, HEAD, OPTIONS, DELETE",
-            "access-control-allow-origin": "*",
-            "access-control-max-age": "300",
-            "cache-control": "no-cache, no-store",
-            "request-id": "req_7MaGqbHIYfyIOC",
-            "stripe-version": "2015-02-18"
         }
     },
     {
         "scope": "https://api.stripe.com:443",
         "method": "GET",
         "path": "/v1/charges",
-        "body": "customer=cus_7MaG1FCDTo5FQN",
         "status": 200,
         "response": {
-            "object": "list",
             "data": [
                 {
-                    "id": "ch_177r61KaReE7xLUd0uus3sLZ",
-                    "object": "charge",
+                    "id": "ch_17FwCXKaReE7xLUdRqnTRkZ1",
                     "amount": 499,
-                    "amount_refunded": 0,
-                    "application_fee": null,
-                    "balance_transaction": null,
-                    "captured": false,
-                    "created": 1447696133,
-                    "currency": "usd",
-                    "customer": "cus_7MaG1FCDTo5FQN",
-                    "description": null,
-                    "destination": null,
-                    "dispute": null,
-                    "failure_code": "card_declined",
-                    "failure_message": "Your card was declined.",
-                    "fraud_details": {},
-                    "invoice": null,
-                    "livemode": false,
+                    "customer": "cus_7Uw4xPukaQLLcQ",
                     "metadata": {
-                        "productID": "gems_5",
-                        "userID": "564a17049997da2f5eccd139",
                         "gems": "5000",
-                        "timestamp": "1447696132133"
+                        "timestamp": "1449622379478"
                     },
                     "paid": false,
-                    "receipt_email": "normal@jo.com",
-                    "receipt_number": null,
-                    "refunded": false,
-                    "refunds": {
-                        "object": "list",
-                        "data": [],
-                        "has_more": false,
-                        "total_count": 0,
-                        "url": "/v1/charges/ch_177r61KaReE7xLUd0uus3sLZ/refunds"
-                    },
-                    "shipping": null,
                     "source": {
-                        "id": "card_177r5zKaReE7xLUdwjDV5005",
-                        "object": "card",
-                        "address_city": null,
-                        "address_country": null,
-                        "address_line1": null,
-                        "address_line1_check": null,
-                        "address_line2": null,
-                        "address_state": null,
-                        "address_zip": null,
-                        "address_zip_check": null,
-                        "brand": "Visa",
-                        "country": "US",
-                        "customer": "cus_7MaG1FCDTo5FQN",
-                        "cvc_check": "pass",
-                        "dynamic_last4": null,
-                        "exp_month": 12,
-                        "exp_year": 2020,
-                        "fingerprint": "VOoJxSZ2hFwAfBJz",
-                        "funding": "credit",
-                        "last4": "0341",
-                        "metadata": {},
-                        "name": null,
-                        "tokenization_method": null
-                    },
-                    "statement_descriptor": "CODECOMBAT.COM",
-                    "status": "failed"
+                        "id": "card_17FwCVKaReE7xLUdZT43QjXT",
+                        "customer": "cus_7Uw4xPukaQLLcQ"
+                    }
                 }
-            ],
-            "has_more": false,
-            "url": "/v1/charges"
-        },
-        "headers": {
-            "server": "nginx",
-            "date": "Mon, 16 Nov 2015 17:48:56 GMT",
-            "content-type": "application/json",
-            "content-length": "1954",
-            "connection": "close",
-            "access-control-allow-credentials": "true",
-            "access-control-allow-methods": "GET, POST, HEAD, OPTIONS, DELETE",
-            "access-control-allow-origin": "*",
-            "access-control-max-age": "300",
-            "cache-control": "no-cache, no-store",
-            "request-id": "req_7MaGg6dTePy9Pj",
-            "stripe-version": "2015-02-18",
-            "strict-transport-security": "max-age=31556926; includeSubDomains"
+            ]
         }
     },
     {
         "scope": "https://api.stripe.com:443",
         "method": "POST",
         "path": "/v1/charges",
-        "body": "amount=499&currency=usd&customer=cus_7MaG1FCDTo5FQN&metadata%5BproductID%5D=gems_5&metadata%5BuserID%5D=564a17049997da2f5eccd139&metadata%5Bgems%5D=5000&metadata%5Btimestamp%5D=1447696135226&metadata%5Bdescription%5D=&receipt_email=normal%40jo.com&statement_descriptor=CODECOMBAT.COM",
         "status": 402,
         "response": {
             "error": {
-                "message": "Your card was declined.",
-                "type": "card_error",
-                "code": "card_declined",
-                "decline_code": "generic_decline",
-                "charge": "ch_177r64KaReE7xLUdqfa7Zr4K"
+                "type": "card_error"
             }
-        },
-        "headers": {
-            "server": "nginx",
-            "date": "Mon, 16 Nov 2015 17:48:57 GMT",
-            "content-type": "application/json",
-            "content-length": "201",
-            "connection": "close",
-            "access-control-allow-credentials": "true",
-            "access-control-allow-methods": "GET, POST, HEAD, OPTIONS, DELETE",
-            "access-control-allow-origin": "*",
-            "access-control-max-age": "300",
-            "cache-control": "no-cache, no-store",
-            "request-id": "req_7MaGGWzulT4Fh2",
-            "stripe-version": "2015-02-18"
         }
     }
 ]
